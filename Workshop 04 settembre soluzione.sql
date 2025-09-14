@@ -3,9 +3,9 @@ Workshop: Scrittura query e tuning delle performance.
 
 Individuare in quali circostanze una categoria di prodotti ha registrato un rincaro del prezzo medio di vendita superiore al 20% rispetto all'anno precedente.
 L'analisi deve riguardare soltanto le vendite effettuate a clienti degli stati uniti e del canada.
-ï	Attenzione 1: il prezzo di vendita non Ë in dollari.
-ï	Attenzione 2: considerare anche lo sconto.
-ï	Attenzione 3: la media del prezzo di vendita deve essere pesata per la quantit‡ di ogni linea d'ordine
+‚Ä¢	Attenzione 1: il prezzo di vendita non √® in dollari.
+‚Ä¢	Attenzione 2: considerare anche lo sconto.
+‚Ä¢	Attenzione 3: la media del prezzo di vendita deve essere pesata per la quantit√† di ogni linea d'ordine
 Eseguire l'esercizio prima sul database operativo e poi sul datawarehouse.
 
 Traccia della soluzione
@@ -34,13 +34,13 @@ Step 4
 Partendo dallo step precedente, aggiungere nella SELECT le colonne calcolate:
 1) YearOrderDate: anno della data d'ordine
 2) UnitPriceAdjusted: UnitPrice meno lo sconto e moltiplicato per il cambio
-Attenzione: UnitPriceDiscont Ë in percentuale o in valore assoluto?
+Attenzione: UnitPriceDiscont √® in percentuale o in valore assoluto?
 Attenzione: Hai gestito bene i NULL?
 Per questo passo uso una CTE o una tabella temporanea?
 
 Step 5
 Raggruppare per YearOrderDate e Categoria. 
-Calcolare la media  dello UnitPriceAdjusted pesato per la quantit‡
+Calcolare la media  dello UnitPriceAdjusted pesato per la quantit√†
 Esempio di media pesata: 
 Esame 1 voto 30 crediti 18
 Esame 2 voto 28 crediti 9
@@ -76,7 +76,7 @@ FROM   Sales.SalesOrderHeader as oh
 LEFT JOIN  Sales.CurrencyRate as cr
 	on oh.CurrencyRateID = cr.CurrencyRateID
 GROUP BY FromCurrencyCode, ToCurrencyCode
---Deduciamo che quando in Sales.SalesOrderHeader c'Ë NULL, l'importo Ë gia in USD
+--Deduciamo che quando in Sales.SalesOrderHeader c'√® NULL, l'importo √® gia in USD
 
 --Distribuzione colonna UnitPriceDiscount di Sales.SalesOrderDetail
 SELECT UnitPriceDiscount, COUNT(*)
