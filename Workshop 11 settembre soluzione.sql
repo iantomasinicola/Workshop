@@ -17,8 +17,8 @@ Step 11
 Aggiungere alla stored procedure un parametro di output che riporta il numero di righe della tabella finale
 
 Step 12
-Aggiungere una validazione dell’input. 
-Restituire errore se è inserito un territorio non presente nel Database
+Aggiungere una validazione dellâ€™input. 
+Restituire errore se Ã¨ inserito un territorio non presente nel Database
 */
 
 
@@ -117,5 +117,6 @@ SELECT   Category,
 	max(case when year = 2012 then Average else null end) as average_2012
 FROM     #FINALFINAL
 GROUP BY Category 
+
 
 
