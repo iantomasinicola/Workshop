@@ -69,7 +69,7 @@ select EnglishProductCategoryName AS Category,
 	sum(adjustedUnitpRICE*ORDERQUANTITY)/SUM(ORDERQUANTITY) as average
 into #final
 from #perimetro
-group by EnglishProductCategoryName, calendarYear
+group by EnglishProductCategoryName, calendarYear;
 
 with 
 cte as (
@@ -84,13 +84,13 @@ SELECT category,
 	previous_average,
 	(average-previous_average)/previous_average as scostamento
 FROM cte
-where  (average-previous_average)/previous_average > 0.20
+where  (average-previous_average)/previous_average > 0.20;
 
 
 /*Calcolo anni/categorie mancanti */
 select distinct year
 into #anni
-from #final
+from #final;
 
 select distinct category
 into #categorie
@@ -117,6 +117,7 @@ SELECT   Category,
 	max(case when year = 2012 then Average else null end) as average_2012
 FROM     #FINALFINAL
 GROUP BY Category 
+
 
 
 
