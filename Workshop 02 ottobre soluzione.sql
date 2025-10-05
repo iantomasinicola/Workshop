@@ -1,4 +1,4 @@
-/*Creazione tabella da entit‡ Utente*/
+/*Creazione tabella da entit√† Utente*/
 CREATE TABLE dbo.Utenti(
 	IdUtente INT NOT NULL,
 	Username NVARCHAR(50) NOT NULL,
@@ -6,7 +6,7 @@ CREATE TABLE dbo.Utenti(
 	DataRegistrazione DATETIME NOT NULL,
 	PRIMARY KEY (IdUtente));
 
-/*Creazione tabella da entit‡ Post*/
+/*Creazione tabella da entit√† Post*/
 CREATE TABLE dbo.Post(
 	IdPost INT NOT NULL,
 	Titolo NVARCHAR(100) NOT NULL,
@@ -22,7 +22,7 @@ ALTER TABLE dbo.Post
 ADD FOREIGN KEY (IdUtente) 
 REFERENCES dbo.Utenti(IdUtente);
 
-/*Creazione tabella da entit‡ Categoria*/
+/*Creazione tabella da entit√† Categoria*/
 CREATE TABLE  dbo.Categoria(
 	IdCategoria INT NOT NULL PRIMARY KEY,
 	NOME VARCHAR(50),
@@ -37,7 +37,7 @@ CREATE TABLE dbo.PostCategoria(
 	FOREIGN KEY (IdCategoria) REFERENCES dbo.Categoria(IdCategoria))
 
 
-/*Creazione tabella da entit‡ Follow con gestione delle due
+/*Creazione tabella da entit√† Follow con gestione delle due
 relazioni Utente-Follow*/
 CREATE TABLE dbo.Follow(
 	IdFollow int NOT NULL,
