@@ -53,7 +53,7 @@ ORDER BY COUNT(*) desc
 Lavoriamo con tutte le righe di test
 *************************************/
 
---Strategia 1: vista parametrica + cross apply	
+--Strategia 1: vista parametrica + cross apply
 CREATE FUNCTION dbo.PredizioneIris1 (@rownumber INT)
 RETURNS TABLE 
 RETURN
@@ -72,7 +72,7 @@ ORDER BY punteggio ASC
 
   ) as z
   GROUP BY z.predizione
-ORDER BY COUNT(*) desc
+ORDER BY COUNT(*) desc;
 
 	
 SELECT T.CLASS AS RealClass,
@@ -117,7 +117,12 @@ SELECT  *
 FROM   CTE
 WHERE  RN = 1
 
---Strategia 3: cursore
+	
+--Strategia 3: utilizzo di un cursore
+CREATE TABLE #output (
+	predizione varchar(50), 
+	classe_reale varchar(50));
+	
 declare @row_number int; 
 declare @sepal_length decimal(18,4); 
 declare @sepal_width decimal(18,4); 
@@ -136,7 +141,7 @@ fetch next from cursore into @row_number, @sepal_length,@sepal_width,@petal_leng
 
 while (@@FETCH_STATUS = 0)
 begin
-	insert into #output
+	insert into #output(predizione,classe_reale)
 	SELECT TOP 1  
 		z.predizione, @class as classe_reale
 	FROM 
@@ -159,6 +164,7 @@ end
 
 close cursore;
 deallocate cursore;
+
 
 
 
